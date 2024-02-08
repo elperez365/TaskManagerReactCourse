@@ -1,0 +1,22 @@
+.label {
+  text-transform: uppercase;
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+  font-size: 0.8rem;
+}
+.input {
+  width: 50rem;
+  border: 0;
+  height: 1.8rem;
+  font-style: inherit;
+  font-weight: 700;
+  color: var(--title-color);
+  background-color: var(--text-color);
+}
+.textarea {
+  width: 50rem;
+  border: 0;
+  height: 3rem;
+  background-color: var(--text-color);
+}
