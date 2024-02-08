@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:ital,wght@0,700;1,100;1,300;1,900&display=swap");
+
+:root {
+  --main-color: aliceblue;
+  --primary-color: rgb(27, 25, 24);
+  --secondary-color: rgb(68, 64, 61);
+  --title-color: rgb(117, 114, 113);
+  --text-color: rgb(216, 217, 217);
+}
+
+* {
+  font-family: "Orbitron", sans-serif;
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
