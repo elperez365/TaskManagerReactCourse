@@ -16,7 +16,7 @@ button {
         } 
     }
     
-    &.erase {
+    &.erase, &.add {
         background-color: var(--main-color);
         color: var(--primary-color);
         &:hover {
