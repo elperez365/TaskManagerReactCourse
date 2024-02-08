@@ -6,6 +6,7 @@ function App() {
     <>
       <Sidebar />
       <Outlet />
+      <h1>ciaoonwe</h1>
     </>
   );
 }
