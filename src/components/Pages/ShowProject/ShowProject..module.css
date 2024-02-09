@@ -1,0 +1,50 @@
+.show_container {
+  margin-top: -5%;
+  margin-right: -15%;
+  width: 70%;
+}
+.show_header {
+  display: flex;
+  justify-content: space-between;
+}
+.show_body {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 0.5rem;
+}
+.show_body p:nth-child(2) {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.input_area {
+  display: flex;
+  text-align: start;
+  justify-content: start;
+  margin-top: 1.2rem;
+}
+.input_area label {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+.input_area input {
+  width: 20rem;
+}
+.input_area button {
+  margin-top: auto;
+  margin-left: 1rem;
+  margin-bottom: 0.4rem;
+  height: 50%;
+}
+.tasks {
+  background-color: rgb(246, 248, 248);
+  margin-top: 2.2rem;
+  text-align: start;
+}
+.tasks ul {
+  list-style: none;
+}
+.task {
+  display: flex;
+  justify-content: space-between;
+}
