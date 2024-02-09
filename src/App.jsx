@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Outlet from "./components/Layouts/Outlet/Outlet";
-import ProjectList from "./components/Layouts/ProjectList/ProjectList";
 import Sidebar from "./components/Layouts/Sidebar/Sidebar";
 
 import { DUMMYDATA } from "./data/mockData";
@@ -11,13 +10,15 @@ function App() {
     selectedProject: DUMMYDATA[0],
     isStart: "started",
   });
+
+  const projectTasks = store.selectedProject?.tasks;
   return (
     <>
       <div className="interface">
         <section className="sidenav">
           <Sidebar store={[store, setStore]} />
         </section>
-        <Outlet store={[store, setStore]} />
+        <Outlet projectTasks={projectTasks} store={[store, setStore]} />
       </div>
     </>
   );

@@ -2,15 +2,17 @@ import Input from "../../Reusable/Input/Input";
 import TaskList from "../../Layouts/TaskList/Tasklist";
 import Button from "../../Reusable/Button/Button";
 import classes from "./ShowProject.module.css";
+import { useRef } from "react";
 
 export default function ShowProject({
   title,
   description,
   dueDate,
-  tasks,
+  projectTasks,
   storeState,
 }) {
   const [store, setStore] = storeState;
+
   const handleDeleteProject = () => {
     setStore((prev) => {
       return {
@@ -20,6 +22,32 @@ export default function ShowProject({
         data: prev.data.filter((project) => project.title !== title),
       };
     });
+  };
+  const inputRef = useRef();
+
+  const handleAddTask = () => {
+    setStore((prev) => {
+      return {
+        ...prev,
+
+        data: prev.data.map((project) => {
+          if (project.title === title) {
+            return {
+              ...project,
+              tasks: [
+                ...project.tasks,
+                {
+                  id: Math.random().toFixed(2),
+                  title: inputRef.current.value,
+                },
+              ],
+            };
+          }
+          return project;
+        }),
+      };
+    });
+    // inputRef.current.value = "";
   };
 
   return (
@@ -44,14 +72,18 @@ export default function ShowProject({
 
       <div className={classes.input_area}>
         <div className={classes.input_container}>
-          <Input typeInput="input" label="Task" type="text" />
+          <Input ref={inputRef} typeInput="input" label="Task" type="text" />
           <span>
-            <Button type="button" action={"add"}>
+            <Button
+              onClick={() => handleAddTask()}
+              type="button"
+              action={"add"}
+            >
               Add Task
             </Button>
           </span>
         </div>
-        <TaskList storeState={[store, setStore]} tasks={tasks} />
+        <TaskList projectTasks={projectTasks} storeState={[store, setStore]} />
       </div>
     </div>
   );
