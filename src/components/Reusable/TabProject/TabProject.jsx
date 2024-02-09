@@ -1,10 +1,23 @@
 import Button from "../Button/Button";
 
-const TabProject = ({ title }) => {
+const TabProject = (props) => {
+  const setStore = props.setStore;
   return (
     <li>
-      <Button action="create" type="button">
-        {title}
+      <Button
+        onClick={() =>
+          setStore((prev) => {
+            return {
+              ...prev,
+              selectedProject: props.project,
+              isStart: "ShowProject",
+            };
+          })
+        }
+        action="create"
+        type="button"
+      >
+        {props.project.title}
       </Button>
     </li>
   );

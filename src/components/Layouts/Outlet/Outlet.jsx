@@ -2,14 +2,12 @@ import FormProject from "../../Pages/FormProject/FormProject";
 import classes from "./Outlet.module.css";
 import logo from "../../../assets/logo/no-projects.webp";
 import ShowProject from "../../Pages/ShowProject/ShowProject";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Button from "../../Reusable/Button/Button";
-import { DUMMYDATA } from "../../../data/mockData";
+
 import Modal from "../../Reusable/Modal/Modal";
 export default function Outlet(props) {
-  const [isStart, setIsStart] = useState("started");
-  const [projects, setProjects] = useState(DUMMYDATA);
-  console.log(projects);
+  const [store, setStore] = props.store;
 
   const title = useRef();
   const description = useRef();
@@ -24,8 +22,8 @@ export default function Outlet(props) {
       modalRef.current.openModal();
       return;
     }
-    let lastId = projects.length - 1;
-    let id = projects[lastId].id + 1;
+    let lastId = store.data.length - 1;
+    let id = store.data[lastId].id + 1;
     const newProject = {
       id: id,
       title: title.current.value,
@@ -33,10 +31,14 @@ export default function Outlet(props) {
       dueDate: dueDate.current.value,
       tasks: [""],
     };
-    setProjects([...projects, newProject]);
-    setIsStart("started");
+    setStore((prev) => {
+      return { ...prev, data: [...prev.data, newProject] };
+    });
+    setStore((prev) => {
+      return { ...prev, isStart: "started" };
+    });
   }
-  switch (isStart) {
+  switch (store.isStart) {
     case "started":
       return (
         <div className={classes.container}>
@@ -53,7 +55,11 @@ export default function Outlet(props) {
             <Button
               type="button"
               action="create"
-              onClick={() => setIsStart("FormProject")}
+              onClick={() =>
+                setStore((prev) => {
+                  return { ...prev, isStart: "FormProject" };
+                })
+              }
             >
               Create a new project
             </Button>
@@ -70,7 +76,11 @@ export default function Outlet(props) {
               <Button
                 action={"erase"}
                 type={"button"}
-                onClick={() => setIsStart("started")}
+                onClick={() =>
+                  setStore((prev) => {
+                    return { ...prev, isStart: "started" };
+                  })
+                }
               >
                 Cancel
               </Button>
@@ -91,10 +101,11 @@ export default function Outlet(props) {
       return (
         <div className={classes.container}>
           <ShowProject
-            title={"title"}
-            description={"desc"}
-            dueDate={"22/02/2022"}
-            tasks={["task1", "task2", "task3"]}
+            storeState={[store, setStore]}
+            title={store.selectedProject.title}
+            description={store.selectedProject.description}
+            dueDate={store.selectedProject.dueDate}
+            tasks={store.selectedProject.tasks}
           />
         </div>
       );

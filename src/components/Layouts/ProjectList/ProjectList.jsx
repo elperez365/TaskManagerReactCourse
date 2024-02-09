@@ -1,12 +1,13 @@
 import TabProject from "../../Reusable/TabProject/TabProject";
 import { DUMMYDATA } from "../../../data/mockData";
 
-const ProjectList = ({ children, ...props }) => {
+const ProjectList = (props) => {
+  const [store, setStore] = props.store;
   return (
     <ul>
       {/* section è projectlist componente padre */}
-      {DUMMYDATA.map((project) => (
-        <TabProject title={project.title} key={project.id} />
+      {store.data.map((project) => (
+        <TabProject setStore={setStore} project={project} key={project.id} />
       ))}
     </ul>
   );

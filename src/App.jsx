@@ -1,18 +1,23 @@
+import { useState } from "react";
 import Outlet from "./components/Layouts/Outlet/Outlet";
 import ProjectList from "./components/Layouts/ProjectList/ProjectList";
 import Sidebar from "./components/Layouts/Sidebar/Sidebar";
-import TabProject from "./components/Reusable/TabProject/TabProject";
+
+import { DUMMYDATA } from "./data/mockData";
 
 function App() {
+  const [store, setStore] = useState({
+    data: DUMMYDATA,
+    selectedProject: DUMMYDATA[0],
+    isStart: "started",
+  });
   return (
     <>
       <div className="interface">
         <section className="sidenav">
-          <Sidebar>
-            <ProjectList />
-          </Sidebar>
+          <Sidebar store={[store, setStore]} />
         </section>
-        <Outlet />
+        <Outlet store={[store, setStore]} />
       </div>
     </>
   );
