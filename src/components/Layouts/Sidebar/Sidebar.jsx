@@ -1,4 +1,4 @@
-import { DUMMYDATA } from "../../../data/mockData.js";
+
 
 import Button from "../../Reusable/Button/Button";
 import classes from "./Sidebar.module.css";
@@ -23,6 +23,7 @@ export default function Sidebar(props) {
         </Button>
         <ProjectList store={[store, setStore]}></ProjectList>
       </section>
+
     </>
   );
 }
