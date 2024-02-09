@@ -1,0 +1,26 @@
+.label {
+  text-transform: uppercase;
+  display: block;
+  font-size: 0.8rem;
+  margin-bottom: 0.1rem;
+}
+.input {
+  width: 43rem;
+  max-width: 100%;
+  border: 0;
+  height: 2.3rem;
+  background-color: #e7e5e4;
+  padding: 0.2rem;
+}
+.input::-webkit-input-placeholder,
+.textarea::-webkit-input-placeholder {
+  color: rgb(159, 160, 160);
+}
+.textarea {
+  width: 43rem;
+  max-width: 100%;
+  border: 0;
+  height: 3.8rem;
+  background-color: #e7e5e4;
+  padding: 0.2rem;
+}

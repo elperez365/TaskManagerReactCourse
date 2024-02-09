@@ -1,0 +1,34 @@
+.result_modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  border-radius: 8px;
+  padding: 2rem;
+  background-color: white;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.result_modal h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.result_modal p {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.result_modal p {
+  font-size: 0.9rem;
+  font-weight: 100;
+}
+
+.result_modal form {
+  margin-top: 2rem;
+  text-align: right;
+}
