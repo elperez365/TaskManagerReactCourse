@@ -1,19 +1,24 @@
 import classes from "./TaskList.module.css";
 import Button from "../../Reusable/Button/Button.jsx";
 
-const TaskList = ({ storeState, projectTasks }) => {
+const TaskList = ({ storeState }) => {
   const [store, setStore] = storeState;
 
-  const handleDeleteTask = (taskTitle) => {
+  const handleDeleteTask = (taskId) => {
     setStore((prev) => {
       return {
         ...prev,
-
+        selectedProject: {
+          ...prev.selectedProject,
+          tasks: prev.selectedProject.tasks.filter(
+            (task) => task.id !== taskId
+          ),
+        },
         data: prev.data.map((project) => {
           if (project.title === prev.selectedProject.title) {
             return {
               ...project,
-              tasks: project.tasks.filter((task) => task.title !== taskTitle),
+              tasks: project.tasks.filter((task) => task.id !== taskId),
             };
           }
           return project;
@@ -26,11 +31,11 @@ const TaskList = ({ storeState, projectTasks }) => {
   return (
     <div className={classes.tasks}>
       <ul>
-        {projectTasks.map((task) => (
+        {store.selectedProject.tasks.map((task) => (
           <div key={task.id + task.title} className={classes.task}>
             <li>{task.title}</li>
             <Button
-              onClick={() => handleDeleteTask(task.title)}
+              onClick={() => handleDeleteTask(task.id)}
               type="button"
               action={"erase"}
             >

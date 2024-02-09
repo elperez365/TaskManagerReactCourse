@@ -8,7 +8,7 @@ export default function ShowProject({
   title,
   description,
   dueDate,
-  projectTasks,
+
   storeState,
 }) {
   const [store, setStore] = storeState;
@@ -26,9 +26,20 @@ export default function ShowProject({
   const inputRef = useRef();
 
   const handleAddTask = () => {
+    const id = Math.random().toFixed(2);
     setStore((prev) => {
       return {
         ...prev,
+        selectedProject: {
+          ...prev.selectedProject,
+          tasks: [
+            ...prev.selectedProject.tasks,
+            {
+              id: id,
+              title: inputRef.current.value,
+            },
+          ],
+        },
 
         data: prev.data.map((project) => {
           if (project.title === title) {
@@ -37,7 +48,7 @@ export default function ShowProject({
               tasks: [
                 ...project.tasks,
                 {
-                  id: Math.random().toFixed(2),
+                  id: id,
                   title: inputRef.current.value,
                 },
               ],
@@ -83,7 +94,7 @@ export default function ShowProject({
             </Button>
           </span>
         </div>
-        <TaskList projectTasks={projectTasks} storeState={[store, setStore]} />
+        <TaskList storeState={[store, setStore]} />
       </div>
     </div>
   );

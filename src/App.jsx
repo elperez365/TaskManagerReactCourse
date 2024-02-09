@@ -11,14 +11,13 @@ function App() {
     isStart: "started",
   });
 
-  const projectTasks = store.selectedProject?.tasks;
   return (
     <>
       <div className="interface">
         <section className="sidenav">
           <Sidebar store={[store, setStore]} />
         </section>
-        <Outlet projectTasks={projectTasks} store={[store, setStore]} />
+        <Outlet store={[store, setStore]} />
       </div>
     </>
   );

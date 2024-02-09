@@ -101,7 +101,6 @@ export default function Outlet(props) {
       return (
         <div className={classes.container}>
           <ShowProject
-            projectTasks={props.projectTasks}
             storeState={[store, setStore]}
             title={store.selectedProject.title}
             description={store.selectedProject.description}
