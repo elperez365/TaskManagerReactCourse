@@ -7,6 +7,7 @@ import Button from "../../Reusable/Button/Button";
 import { DUMMYDATA } from "../../../data/mockData";
 import Modal from "../../Reusable/Modal/Modal";
 export default function Outlet(props) {
+  const [store, setstore] = props.store;
   const [isStart, setIsStart] = useState("started");
   const [projects, setProjects] = useState(DUMMYDATA);
   console.log(projects);
@@ -34,7 +35,9 @@ export default function Outlet(props) {
       tasks: [""],
     };
     setProjects([...projects, newProject]);
-    setIsStart("started");
+    setstore((prevStore) => {
+      return { ...prevStore, isStart: "started" };
+    });
   }
   switch (isStart) {
     case "started":

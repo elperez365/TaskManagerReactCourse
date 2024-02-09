@@ -3,7 +3,8 @@ import { useState } from "react";
 import Button from "../../Reusable/Button/Button";
 import classes from "./Sidebar.module.css";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
+  const [store, setstore] = props.store;
   return (
     <>
       <section className={classes.content}>
@@ -12,9 +13,21 @@ export default function Sidebar() {
           + Add Project
         </Button>
         <section>
-          {DUMMYDATA.map((project) => (
+          {store.data.map((project) => (
             <ul key={project.id}>
-              <li>{project.title}</li>
+              <li
+                onClick={() =>
+                  setstore((prevStore) => {
+                    return {
+                      ...prevStore,
+                      projectSelected: project,
+                      isStart: "ShowProject",
+                    };
+                  })
+                }
+              >
+                {project.title}
+              </li>
             </ul>
           ))}
         </section>
