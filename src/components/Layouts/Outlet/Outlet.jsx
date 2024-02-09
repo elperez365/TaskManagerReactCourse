@@ -2,10 +2,40 @@ import FormProject from "../../Pages/FormProject/FormProject";
 import classes from "./Outlet.module.css";
 import logo from "../../../assets/logo/no-projects.webp";
 import ShowProject from "../../Pages/ShowProject/ShowProject";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import Button from "../../Reusable/Button/Button";
+import { DUMMYDATA } from "../../../data/mockData";
+import Modal from "../../Reusable/Modal/Modal";
+export default function Outlet(props) {
+  const [isStart, setIsStart] = useState("started");
+  const [projects, setProjects] = useState(DUMMYDATA);
+  console.log(projects);
 
-export default function Outlet( props ) {
-  const [isStart, setIsStart] = useState("ShowProject");
+  const title = useRef();
+  const description = useRef();
+  const dueDate = useRef();
+  const modalRef = useRef();
+  function saveProject() {
+    if (
+      title.current.value === "" ||
+      description.current.value === "" ||
+      dueDate.current.value === ""
+    ) {
+      modalRef.current.openModal();
+      return;
+    }
+    let lastId = projects.length - 1;
+    let id = projects[lastId].id + 1;
+    const newProject = {
+      id: id,
+      title: title.current.value,
+      description: description.current.value,
+      dueDate: dueDate.current.value,
+      tasks: [""],
+    };
+    setProjects([...projects, newProject]);
+    setIsStart("started");
+  }
   switch (isStart) {
     case "started":
       return (
@@ -20,22 +50,41 @@ export default function Outlet( props ) {
             <p className={classes.paragraph}>
               Select a project or get started with a new one
             </p>
-            <button onClick={() => setIsStart("FormProject")}>
+            <Button
+              type="button"
+              action="create"
+              onClick={() => setIsStart("FormProject")}
+            >
               Create a new project
-            </button>
+            </Button>
           </div>
         </div>
       );
       break;
     case "FormProject":
       return (
-        <div className={classes.container_form}>
-          <div className={classes.button_container}>
-            <button onClick={() => setIsStart("started")}>Cancel</button>
-            <button>Save</button>
+        <>
+          <Modal ref={modalRef} />
+          <div className={classes.container_form}>
+            <div className={classes.button_container}>
+              <Button
+                action={"erase"}
+                type={"button"}
+                onClick={() => setIsStart("started")}
+              >
+                Cancel
+              </Button>
+              <Button onClick={saveProject} action="create" type={"button"}>
+                Save
+              </Button>
+            </div>
+            <FormProject
+              title={title}
+              description={description}
+              dueDate={dueDate}
+            />
           </div>
-          <FormProject />
-        </div>
+        </>
       );
       break;
     case "ShowProject":

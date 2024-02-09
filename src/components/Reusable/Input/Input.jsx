@@ -1,11 +1,12 @@
+import { forwardRef } from "react";
 import classes from "./Input.module.css";
-export default function Input({ typeInput, label, type, onChange, ...props }) {
+const Input = forwardRef (function Input({ typeInput, label, type, ...props },ref) {
   //if the type is text or textarea
   if (typeInput === "input") {
     return (
       <div>
         <label className={classes.label}>{label}</label>
-        <input className={classes.input} onChange={onChange} type={type} {...props} />
+        <input ref={ref} className={classes.input} type={type} {...props} />
       </div>
     );
   } else if (typeInput === "textarea") {
@@ -13,8 +14,8 @@ export default function Input({ typeInput, label, type, onChange, ...props }) {
       <div>
         <label className={classes.label}>{label}</label>
         <textarea
+        ref={ref}
           className={classes.textarea}
-          onChange={onChange}
           {...props}
         ></textarea>
       </div>
@@ -24,4 +25,6 @@ export default function Input({ typeInput, label, type, onChange, ...props }) {
       <p>Please sele a typeInput (input or textarea)</p>
     </>;
   }
-}
+})
+
+export default Input;
