@@ -1,0 +1,27 @@
+.tasks {
+  background-color: rgb(245, 245, 245);
+  margin-top: 2.2rem;
+  text-align: start;
+  
+  & ul {
+    list-style: none;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  
+  & li {
+    font-family: sans-serif;
+    align-self: center;
+    margin-left: 1rem;
+  }
+
+  & button {
+    margin-right: 1rem;
+  }
+}

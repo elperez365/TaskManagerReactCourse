@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .show_body {
   display: flex;
   flex-direction: column;
@@ -17,34 +18,36 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
+
 .input_area {
   display: flex;
+  flex-direction: column;
   text-align: start;
   justify-content: start;
   margin-top: 1.2rem;
 }
+
 .input_area label {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  font-family: sans-serif;
+  font-weight: 600;
+  text-transform: capitalize;
   margin-bottom: 1rem;
+
 }
+
 .input_area input {
   width: 20rem;
 }
-.input_area button {
-  margin-top: auto;
-  margin-left: 1rem;
-  margin-bottom: 0.4rem;
-  height: 50%;
-}
-.tasks {
-  background-color: rgb(246, 248, 248);
-  margin-top: 2.2rem;
-  text-align: start;
-}
-.tasks ul {
-  list-style: none;
-}
-.task {
+
+.input_container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 1rem;
 }
+
+
+
+
