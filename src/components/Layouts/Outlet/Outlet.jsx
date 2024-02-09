@@ -5,10 +5,10 @@ import { useState } from "react";
 import ShowProject from "../../Pages/ShowProject/ShowProject";
 
 export default function Outlet({ project }) {
-  const [isStart, setIsStart] = useState(false);
+  const [isStart, setIsStart] = useState(true);
   return (
     <>
-      {!isStart && project === null ? (
+      {!isStart && project === undefined ? (
         <div className={classes.container}>
           <div>
             <img
@@ -25,12 +25,13 @@ export default function Outlet({ project }) {
             </button>
           </div>
         </div>
-      ) : (
+      ) : null}
+      {isStart && project !== undefined ? (
         <div className={classes.container}>
           <ShowProject />
         </div>
-      )}
-      {isStart && (
+      ) : null}
+      {isStart && project === undefined ? (
         <div className={classes.container_form}>
           <div className={classes.button_container}>
             <button onClick={() => setIsStart(false)}>Cancel</button>
@@ -38,7 +39,7 @@ export default function Outlet({ project }) {
           </div>
           <FormProject />
         </div>
-      )}
+      ) : null}
     </>
   );
 }
