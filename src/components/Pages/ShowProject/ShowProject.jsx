@@ -5,12 +5,12 @@ export default function ShowProject({ title, description, dueDate, tasks }) {
   return (
     <div className={classes.show_container}>
       <div className={classes.show_header}>
-        <h2>Project</h2>
+        <h2>{title}</h2>
         <button>Clear</button>
       </div>
       <div className={classes.show_body}>
-        <p>Feb 22,2024</p>
-        <p>Description for my project</p>
+        <p>{dueDate}</p>
+        <p>{description}</p>
       </div>
       <hr />
       <div className={classes.input_area}>
@@ -19,10 +19,12 @@ export default function ShowProject({ title, description, dueDate, tasks }) {
       </div>
       <div className={classes.tasks}>
         <ul>
-          <div className={classes.task}>
-            <li>Task Number</li>
-            <button>Clear</button>
-          </div>
+          {tasks.map((task,index) => (
+            <div key={index} className={classes.task}>
+              <li>{task}</li>
+              <button>Clear</button>
+            </div>
+          ))}
         </ul>
       </div>
     </div>

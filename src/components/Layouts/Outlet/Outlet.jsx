@@ -1,14 +1,14 @@
 import FormProject from "../../Pages/FormProject/FormProject";
 import classes from "./Outlet.module.css";
 import logo from "../../../assets/logo/no-projects.webp";
-import { useState } from "react";
 import ShowProject from "../../Pages/ShowProject/ShowProject";
+import { useState } from "react";
 
-export default function Outlet({ project }) {
-  const [isStart, setIsStart] = useState(true);
-  return (
-    <>
-      {!isStart && project === undefined ? (
+export default function Outlet( props ) {
+  const [isStart, setIsStart] = useState("ShowProject");
+  switch (isStart) {
+    case "started":
+      return (
         <div className={classes.container}>
           <div>
             <img
@@ -20,26 +20,38 @@ export default function Outlet({ project }) {
             <p className={classes.paragraph}>
               Select a project or get started with a new one
             </p>
-            <button onClick={() => setIsStart(true)}>
+            <button onClick={() => setIsStart("FormProject")}>
               Create a new project
             </button>
           </div>
         </div>
-      ) : null}
-      {isStart && project !== undefined ? (
-        <div className={classes.container}>
-          <ShowProject />
-        </div>
-      ) : null}
-      {isStart && project === undefined ? (
+      );
+      break;
+    case "FormProject":
+      return (
         <div className={classes.container_form}>
           <div className={classes.button_container}>
-            <button onClick={() => setIsStart(false)}>Cancel</button>
+            <button onClick={() => setIsStart("started")}>Cancel</button>
             <button>Save</button>
           </div>
           <FormProject />
         </div>
-      ) : null}
-    </>
-  );
+      );
+      break;
+    case "ShowProject":
+      return (
+        <div className={classes.container}>
+          <ShowProject
+            title={"title"}
+            description={"desc"}
+            dueDate={"22/02/2022"}
+            tasks={["task1", "task2", "task3"]}
+          />
+        </div>
+      );
+      break;
+    default:
+      null;
+      break;
+  }
 }
