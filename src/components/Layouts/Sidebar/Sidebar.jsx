@@ -2,6 +2,7 @@ import { DUMMYDATA } from "../../../data/mockData.js";
 import { useState } from "react";
 import Button from "../../Reusable/Button/Button";
 import classes from "./Sidebar.module.css";
+import ProjectList from "../ProjectList/ProjectList.jsx";
 
 export default function Sidebar() {
   return (
@@ -11,13 +12,7 @@ export default function Sidebar() {
         <Button type="button" action="create">
           + Add Project
         </Button>
-        <section>
-          {DUMMYDATA.map((project) => (
-            <ul key={project.id}>
-              <li>{project.title}</li>
-            </ul>
-          ))}
-        </section>
+        <ProjectList></ProjectList>
       </section>
     </>
   );
