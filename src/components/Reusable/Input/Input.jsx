@@ -22,7 +22,7 @@ const Input = forwardRef (function Input({ typeInput, label, type, ...props },re
     );
   } else {
     <>
-      <p>Please sele a typeInput (input or textarea)</p>
+      <p>Please select a typeInput (input or textarea)</p>
     </>;
   }
 })
