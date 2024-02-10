@@ -1,8 +1,11 @@
 .show_container {
-  margin-top: -5%;
-  margin-right: -15%;
   width: 70%;
+  margin: 0 auto;
+ 
+  /* margin-top: -5%;
+  margin-right: -15%; */ 
 }
+
 .show_header {
   display: flex;
   justify-content: space-between;

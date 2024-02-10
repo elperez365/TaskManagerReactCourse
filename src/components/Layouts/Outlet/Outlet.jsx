@@ -1,7 +1,7 @@
 import FormProject from "../../Pages/FormProject/FormProject";
 import classes from "./Outlet.module.css";
-import logo from "../../../assets/logo/no-projects.webp";
 import ShowProject from "../../Pages/ShowProject/ShowProject";
+import NoProject from "../../Pages/NoProject/NoProject";
 import { useRef } from "react";
 import Button from "../../Reusable/Button/Button";
 
@@ -42,23 +42,15 @@ export default function Outlet(props) {
     case "started":
       return (
         <div className={classes.container}>
-          <div>
-            <img
-              src={logo}
-              alt="tast manager logo"
-              className={classes.img_responsive + " " + classes.img}
-            />
-            <h2 className={classes.title}>No Project Selected</h2>
-            <p className={classes.paragraph}>
-              Select a project or get started with a new one
-            </p>
+          <div className={classes.noProjectContainer}>
+            <NoProject/>
             <Button
               type="button"
               action="create"
               onClick={() =>
-                setStore((prev) => {
+              setStore((prev) => {
                   return { ...prev, isStart: "FormProject" };
-                })
+              })
               }
             >
               Create a new project
@@ -71,28 +63,35 @@ export default function Outlet(props) {
       return (
         <>
           <Modal ref={modalRef} />
-          <div className={classes.container_form}>
-            <div className={classes.button_container}>
-              <Button
-                action={"erase"}
-                type={"button"}
-                onClick={() =>
-                  setStore((prev) => {
-                    return { ...prev, isStart: "started" };
-                  })
-                }
-              >
-                Cancel
-              </Button>
-              <Button onClick={saveProject} action="create" type={"button"}>
-                Save
-              </Button>
+          
+          <div className={classes.form_container}>
+
+            <div className={classes.form_sub_container}>
+            
+              <div className={classes.button_container}>
+                <Button
+                  action={"erase"}
+                  type={"button"}
+                  onClick={() =>
+                    setStore((prev) => {
+                      return { ...prev, isStart: "started" };
+                    })
+                  }
+                >
+                  Cancel
+                </Button>
+                <Button onClick={saveProject} action="create" type={"button"}>
+                  Save
+                </Button>
+              </div>
+        
+              <FormProject
+                title={title}
+                description={description}
+                dueDate={dueDate}
+              />
+            
             </div>
-            <FormProject
-              title={title}
-              description={description}
-              dueDate={dueDate}
-            />
           </div>
         </>
       );
