@@ -27,25 +27,39 @@ const TaskList = ({ storeState }) => {
     });
   };
   console.log(store);
-
+  
+  const selectedProjectDataTask = store.selectedProject.tasks;
+  
   return (
     <div className={classes.tasks}>
       <ul>
-        {store.selectedProject.tasks.map((task) => (
-          <div key={task.id + task.title} className={classes.task}>
-            <li>{task.title}</li>
-            <Button
-              onClick={() => handleDeleteTask(task.id)}
-              type="button"
-              action={"erase"}
-            >
-              Clear
-            </Button>
-          </div>
-        ))}
+        
+        {selectedProjectDataTask.length > 0 ?  
+        
+          (selectedProjectDataTask.map((task) => (
+            <div key={task.id + task.title} className={classes.task}>
+              <li>{task.title}</li>
+              <Button
+                onClick={() => handleDeleteTask(task.id)}
+                type="button"
+                action={"erase"}
+              >
+                Clear
+              </Button>
+            </div> 
+          ))) 
+         
+        : (
+            <p> This project does not have any tasks yet. </p>
+          )
+      
+        }
+
       </ul>
     </div>
+
   );
 };
 
 export default TaskList;
+
