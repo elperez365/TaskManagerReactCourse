@@ -63,7 +63,9 @@ export default function ShowProject({
 
   return (
     <div className={classes.show_container}>
+      
       <div className={classes.show_header}>
+        
         <h2>{title}</h2>
         <Button
           onClick={() => handleDeleteProject()}
@@ -72,6 +74,7 @@ export default function ShowProject({
         >
           Delete
         </Button>
+        
       </div>
 
       <div className={classes.show_body}>

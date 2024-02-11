@@ -1,0 +1,25 @@
+.img_responsive {
+  width: 60px;
+  max-width: 100%;
+}
+
+.img {
+  margin-bottom: 1rem;
+}
+
+.title,
+.paragraph {
+  margin-bottom: 2rem;
+}
+
+.paragraph {
+  font-size: 0.9rem;
+}  
+
+
+/* display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  height: 100vh;
+  justify-self: center; */

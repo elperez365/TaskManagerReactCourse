@@ -6,6 +6,8 @@
   --secondary-color: rgb(68, 64, 61);
   --title-color: rgb(117, 114, 113);
   --text-color: rgb(216, 217, 217);
+
+  --sidebar-width: 15vw;
 }
 
 * {
@@ -22,9 +24,9 @@
   margin-top: 30px;
   display: flex;
   flex-direction: row;
-  align-items: space-between;
-  justify-content: space-between;
-  color: lightgray;
+  /* align-items: space-between;
+  justify-content: space-between; */
+  color: lightgray; 
 }
 
 .sidenav {
