@@ -1,21 +1,16 @@
 import classes from "./TaskList.module.css";
 import Button from "../../Reusable/Button/Button.jsx";
 
-const TaskList = ({ storeState }) => {
+const TaskList = ({ storeState, selectedProject }) => {
   const [store, setStore] = storeState;
 
   const handleDeleteTask = (taskId) => {
     setStore((prev) => {
       return {
         ...prev,
-        selectedProject: {
-          ...prev.selectedProject,
-          tasks: prev.selectedProject.tasks.filter(
-            (task) => task.id !== taskId
-          ),
-        },
+
         data: prev.data.map((project) => {
-          if (project.title === prev.selectedProject.title) {
+          if (project.title === selectedProject.title) {
             return {
               ...project,
               tasks: project.tasks.filter((task) => task.id !== taskId),
@@ -26,17 +21,14 @@ const TaskList = ({ storeState }) => {
       };
     });
   };
-  console.log(store);
-  
-  const selectedProjectDataTask = store.selectedProject.tasks;
-  
+
+  const selectedProjectDataTask = selectedProject.tasks;
+
   return (
     <div className={classes.tasks}>
       <ul>
-        
-        {selectedProjectDataTask.length > 0 ?  
-        
-          (selectedProjectDataTask.map((task) => (
+        {selectedProjectDataTask.length > 0 ? (
+          selectedProjectDataTask.map((task) => (
             <div key={task.id + task.title} className={classes.task}>
               <li>{task.title}</li>
               <Button
@@ -46,20 +38,14 @@ const TaskList = ({ storeState }) => {
               >
                 Clear
               </Button>
-            </div> 
-          ))) 
-         
-        : (
-            <p> This project does not have any tasks yet. </p>
-          )
-      
-        }
-
+            </div>
+          ))
+        ) : (
+          <p> This project does not have any tasks yet. </p>
+        )}
       </ul>
     </div>
-
   );
 };
 
 export default TaskList;
-
