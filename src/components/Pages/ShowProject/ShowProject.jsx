@@ -4,14 +4,12 @@ import Button from "../../Reusable/Button/Button";
 import classes from "./ShowProject.module.css";
 import { useRef } from "react";
 
-export default function ShowProject({
-  title,
-  description,
-  dueDate,
-
-  storeState,
-}) {
+export default function ShowProject({ storeState }) {
   const [store, setStore] = storeState;
+
+  const selectedProject = store.data.find(
+    (project) => project.id === store.selectedProject
+  );
 
   const handleDeleteProject = () => {
     setStore((prev) => {
@@ -19,56 +17,50 @@ export default function ShowProject({
         ...prev,
         isStart: "started",
         selectedProject: null,
-        data: prev.data.filter((project) => project.title !== title),
+        data: prev.data.filter(
+          (project) => project.title !== selectedProject.title
+        ),
       };
     });
   };
   const inputRef = useRef();
 
-const handleAddTask = () => {
-  const id = Math.random().toFixed(2);
-  const inputValue = inputRef.current.value; 
-  inputRef.current.value = "";
-  setStore((prev) => {
-    return {
-      ...prev,
-      selectedProject: {
-        ...prev.selectedProject,
-        tasks: [
-          ...prev.selectedProject.tasks,
-          {
-            id: id,
-            title: inputValue, 
-          },
-        ],
-      },
-      data: prev.data.map((project) => {
-        if (project.title === title) {
-          return {
-            ...project,
-            tasks: [
-              ...project.tasks,
-              {
-                id: id,
-                title: inputValue, 
-              },
-            ],
-          };
-        }
-        return project;
-      }),
-    };
-  });
-};
+  const handleAddTask = () => {
+    const lastTaskIndex = selectedProject.tasks.length - 1;
+    let id;
+    if (lastTaskIndex <= 0) {
+      id = 1;
+    } else id = selectedProject.tasks[lastTaskIndex].id + 1;
 
+    const inputValue = inputRef.current.value;
+    inputRef.current.value = "";
+    setStore((prev) => {
+      return {
+        ...prev,
 
+        data: prev.data.map((project) => {
+          if (project.title === selectedProject.title) {
+            return {
+              ...project,
+              tasks: [
+                ...project.tasks,
+                {
+                  id: id,
+                  title: inputValue,
+                },
+              ],
+            };
+          }
+          return project;
+        }),
+      };
+    });
+  };
 
   return (
     <div className={classes.show_container}>
-      
       <div className={classes.show_header}>
-        
-        <h2>{title}</h2>
+        <h2>{selectedProject.title}</h2>
         <Button
           onClick={() => handleDeleteProject()}
           type="button"
@@ -76,12 +68,18 @@ const handleAddTask = () => {
         >
           Delete
         </Button>
-        
       </div>
 
       <div className={classes.show_body}>
-        <p>{dueDate}</p>
-        <p>{description}</p>
+        <p>
+          {new Date(selectedProject.dueDate).toLocaleDateString("en", {
+            // weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+        </p>
+        <p>{selectedProject.description}</p>
       </div>
 
       <hr />
@@ -99,7 +97,10 @@ const handleAddTask = () => {
             </Button>
           </span>
         </div>
-        <TaskList storeState={[store, setStore]} />
+        <TaskList
+          selectedProject={selectedProject}
+          storeState={[store, setStore]}
+        />
       </div>
     </div>
   );

@@ -13,6 +13,7 @@ export default function Outlet(props) {
   const description = useRef();
   const dueDate = useRef();
   const modalRef = useRef();
+
   function saveProject() {
     if (
       title.current.value === "" ||
@@ -32,7 +33,7 @@ export default function Outlet(props) {
       tasks: [],
     };
     setStore((prev) => {
-      return { ...prev, data: [...prev.data, newProject] };
+      return { ...prev, data: [newProject, ...prev.data] };
     });
     setStore((prev) => {
       return { ...prev, isStart: "started" };
@@ -96,12 +97,7 @@ export default function Outlet(props) {
     case "ShowProject":
       return (
         <div className={classes.container}>
-          <ShowProject
-            storeState={[store, setStore]}
-            title={store.selectedProject.title}
-            description={store.selectedProject.description}
-            dueDate={store.selectedProject.dueDate}
-          />
+          <ShowProject storeState={[store, setStore]} />
         </div>
       );
       break;

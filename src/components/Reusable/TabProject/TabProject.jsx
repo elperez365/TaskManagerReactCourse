@@ -9,7 +9,7 @@ const TabProject = (props) => {
           setStore((prev) => {
             return {
               ...prev,
-              selectedProject: props.project,
+              selectedProject: props.project.id,
               isStart: "ShowProject",
             };
           })

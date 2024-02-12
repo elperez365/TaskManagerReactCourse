@@ -7,7 +7,7 @@ import { DUMMYDATA } from "./data/mockData";
 function App() {
   const [store, setStore] = useState({
     data: DUMMYDATA,
-    selectedProject: DUMMYDATA[0],
+    selectedProject: null,
     isStart: "started",
   });
 
