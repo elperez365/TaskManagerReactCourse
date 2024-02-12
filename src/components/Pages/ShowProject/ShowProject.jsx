@@ -3,6 +3,7 @@ import TaskList from "../../Layouts/TaskList/Tasklist";
 import Button from "../../Reusable/Button/Button";
 import classes from "./ShowProject.module.css";
 import { useRef } from "react";
+import Modal from "../../Reusable/Modal/Modal";
 
 export default function ShowProject({ storeState }) {
   const [store, setStore] = storeState;
@@ -24,8 +25,13 @@ export default function ShowProject({ storeState }) {
     });
   };
   const inputRef = useRef();
+  const modalRef = useRef();
 
   const handleAddTask = () => {
+    if (inputRef.current.value === "") {
+      modalRef.current.openModal();
+      return;
+    }
     const lastTaskIndex = selectedProject.tasks.length - 1;
     let id;
     if (lastTaskIndex <= 0) {
@@ -85,6 +91,7 @@ export default function ShowProject({ storeState }) {
       <hr />
 
       <div className={classes.input_area}>
+        <Modal ref={modalRef} />
         <div className={classes.input_container}>
           <Input ref={inputRef} typeInput="input" label="Task" type="text" />
           <span>
