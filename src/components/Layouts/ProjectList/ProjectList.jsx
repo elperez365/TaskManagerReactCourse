@@ -7,7 +7,11 @@ const ProjectList = (props) => {
     <ul>
       {/* section è projectlist componente padre */}
       {store.data.map((project) => (
-        <TabProject setStore={setStore} project={project} key={project.id} />
+        <TabProject
+          setStore={setStore}
+          project={project}
+          key={project.id + project.title}
+        />
       ))}
     </ul>
   );

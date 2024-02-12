@@ -11,6 +11,8 @@ function App() {
     isStart: "started",
   });
 
+  console.log(store);
+
   return (
     <>
       <div className="interface">

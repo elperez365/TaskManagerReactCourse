@@ -26,7 +26,12 @@ export default function ShowProject({
   const inputRef = useRef();
 
   const handleAddTask = () => {
-    const id = Math.random().toFixed(2);
+    const lastTaskIndex = store.selectedProject.tasks.length - 1;
+    let id;
+    if (lastTaskIndex <= 0) {
+      id = 1;
+    } else id = store.selectedProject.tasks[lastTaskIndex].id + 1;
+
     const inputValue = inputRef.current.value;
     inputRef.current.value = "";
     setStore((prev) => {
