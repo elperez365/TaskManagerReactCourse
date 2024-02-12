@@ -25,49 +25,45 @@ export default function ShowProject({
   };
   const inputRef = useRef();
 
-const handleAddTask = () => {
-  const id = Math.random().toFixed(2);
-  const inputValue = inputRef.current.value; 
-  inputRef.current.value = "";
-  setStore((prev) => {
-    return {
-      ...prev,
-      selectedProject: {
-        ...prev.selectedProject,
-        tasks: [
-          ...prev.selectedProject.tasks,
-          {
-            id: id,
-            title: inputValue, 
-          },
-        ],
-      },
-      data: prev.data.map((project) => {
-        if (project.title === title) {
-          return {
-            ...project,
-            tasks: [
-              ...project.tasks,
-              {
-                id: id,
-                title: inputValue, 
-              },
-            ],
-          };
-        }
-        return project;
-      }),
-    };
-  });
-};
-
-
+  const handleAddTask = () => {
+    const id = Math.random().toFixed(2);
+    const inputValue = inputRef.current.value;
+    inputRef.current.value = "";
+    setStore((prev) => {
+      return {
+        ...prev,
+        selectedProject: {
+          ...prev.selectedProject,
+          tasks: [
+            ...prev.selectedProject.tasks,
+            {
+              id: id,
+              title: inputValue,
+            },
+          ],
+        },
+        data: prev.data.map((project) => {
+          if (project.title === title) {
+            return {
+              ...project,
+              tasks: [
+                ...project.tasks,
+                {
+                  id: id,
+                  title: inputValue,
+                },
+              ],
+            };
+          }
+          return project;
+        }),
+      };
+    });
+  };
 
   return (
     <div className={classes.show_container}>
-      
       <div className={classes.show_header}>
-        
         <h2>{title}</h2>
         <Button
           onClick={() => handleDeleteProject()}
@@ -76,11 +72,17 @@ const handleAddTask = () => {
         >
           Delete
         </Button>
-        
       </div>
 
       <div className={classes.show_body}>
-        <p>{dueDate}</p>
+        <p>
+          {new Date(dueDate).toLocaleDateString("en", {
+            // weekday: "long",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })}
+        </p>
         <p>{description}</p>
       </div>
 
