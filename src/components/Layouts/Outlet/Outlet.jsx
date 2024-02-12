@@ -29,7 +29,7 @@ export default function Outlet(props) {
       title: title.current.value,
       description: description.current.value,
       dueDate: dueDate.current.value,
-      tasks: [""],
+      tasks: [],
     };
     setStore((prev) => {
       return { ...prev, data: [...prev.data, newProject] };
@@ -43,14 +43,14 @@ export default function Outlet(props) {
       return (
         <div className={classes.container}>
           <div className={classes.noProjectContainer}>
-            <NoProject/>
+            <NoProject />
             <Button
               type="button"
               action="create"
               onClick={() =>
-              setStore((prev) => {
+                setStore((prev) => {
                   return { ...prev, isStart: "FormProject" };
-              })
+                })
               }
             >
               Create a new project
@@ -63,11 +63,9 @@ export default function Outlet(props) {
       return (
         <>
           <Modal ref={modalRef} />
-          
-          <div className={classes.form_container}>
 
+          <div className={classes.form_container}>
             <div className={classes.form_sub_container}>
-            
               <div className={classes.button_container}>
                 <Button
                   action={"erase"}
@@ -84,13 +82,12 @@ export default function Outlet(props) {
                   Save
                 </Button>
               </div>
-        
+
               <FormProject
                 title={title}
                 description={description}
                 dueDate={dueDate}
               />
-            
             </div>
           </div>
         </>
