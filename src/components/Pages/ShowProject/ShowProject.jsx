@@ -25,41 +25,43 @@ export default function ShowProject({
   };
   const inputRef = useRef();
 
-  const handleAddTask = () => {
-    const id = Math.random().toFixed(2);
-    setStore((prev) => {
-      return {
-        ...prev,
-        selectedProject: {
-          ...prev.selectedProject,
-          tasks: [
-            ...prev.selectedProject.tasks,
-            {
-              id: id,
-              title: inputRef.current.value,
-            },
-          ],
-        },
+const handleAddTask = () => {
+  const id = Math.random().toFixed(2);
+  const inputValue = inputRef.current.value; 
+  inputRef.current.value = "";
+  setStore((prev) => {
+    return {
+      ...prev,
+      selectedProject: {
+        ...prev.selectedProject,
+        tasks: [
+          ...prev.selectedProject.tasks,
+          {
+            id: id,
+            title: inputValue, 
+          },
+        ],
+      },
+      data: prev.data.map((project) => {
+        if (project.title === title) {
+          return {
+            ...project,
+            tasks: [
+              ...project.tasks,
+              {
+                id: id,
+                title: inputValue, 
+              },
+            ],
+          };
+        }
+        return project;
+      }),
+    };
+  });
+};
 
-        data: prev.data.map((project) => {
-          if (project.title === title) {
-            return {
-              ...project,
-              tasks: [
-                ...project.tasks,
-                {
-                  id: id,
-                  title: inputRef.current.value,
-                },
-              ],
-            };
-          }
-          return project;
-        }),
-      };
-    });
-    // inputRef.current.value = "";
-  };
+
 
   return (
     <div className={classes.show_container}>
