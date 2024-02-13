@@ -21,9 +21,10 @@ export default function Sidebar(props) {
         >
           + Add Project
         </Button>
-        <ProjectList store={[store, setStore]}></ProjectList>
+        <div>
+          <ProjectList store={[store, setStore]}></ProjectList>
+        </div>
       </section>
-
     </>
   );
 }
