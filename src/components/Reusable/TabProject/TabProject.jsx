@@ -1,4 +1,5 @@
 import Button from "../Button/Button";
+import classes from "./TabProject.module.css";
 
 const TabProject = (props) => {
   const setStore = props.setStore;
@@ -14,7 +15,7 @@ const TabProject = (props) => {
             };
           })
         }
-        action="create"
+        action="project"
         type="button"
       >
         {props.project.title}
