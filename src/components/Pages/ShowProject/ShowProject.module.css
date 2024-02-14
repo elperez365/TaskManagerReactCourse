@@ -1,13 +1,14 @@
 .show_container {
   width: 70%;
   margin: 0 auto;
- 
+
   /* margin-top: -5%;
-  margin-right: -15%; */ 
+  margin-right: -15%; */
 }
 
 .show_header {
   display: flex;
+  gap: 1rem;
   justify-content: space-between;
 }
 
@@ -36,11 +37,17 @@
   font-weight: 600;
   text-transform: capitalize;
   margin-bottom: 1rem;
-
 }
-
+@media screen and (max-width: 600px) {
+  .input_area label {
+    font-size: 1.2rem;
+  }
+  .input_area input {
+    width: 7rem;
+  }
+}
 .input_area input {
-  width: 20rem;
+  width: 15rem;
 }
 
 .input_container {
@@ -50,7 +57,3 @@
   align-items: flex-end;
   gap: 1rem;
 }
-
-
-
-
