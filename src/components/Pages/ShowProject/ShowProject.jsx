@@ -71,6 +71,7 @@ export default function ShowProject({ storeState }) {
       <div className={classes.show_container}>
         <div className={classes.show_header}>
           <h2>{selectedProject.title}</h2>
+
           <Button
             onClick={() => handleDeleteProject()}
             type="button"

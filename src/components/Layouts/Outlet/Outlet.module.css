@@ -1,7 +1,7 @@
 /* NO PROJECT CASE */
 
 .container {
-  width: calc(100vw - var(--sidebar-width));
+  width: calc(50vw - var(--sidebar-width));
   margin-top: 10%;
   /* margin-right: 35%;
   display: flex;
@@ -31,7 +31,6 @@
   margin-right: 20%; 
   align-items: end;
   gap: 1rem */
-
 }
 
 .button_container {
@@ -43,5 +42,3 @@
 .button_container button:first-child {
   margin-right: 1.1rem;
 }
-
-
