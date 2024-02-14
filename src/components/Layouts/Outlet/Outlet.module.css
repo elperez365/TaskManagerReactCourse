@@ -1,7 +1,7 @@
 /* NO PROJECT CASE */
 
 .container {
-  width: calc(50vw - var(--sidebar-width));
+  width: calc(100vw - var(--sidebar-width));
   margin-top: 10%;
   /* margin-right: 35%;
   display: flex;
@@ -41,4 +41,8 @@
 
 .button_container button:first-child {
   margin-right: 1.1rem;
+}
+
+.form_sub_container {
+  width: 15rem;
 }
